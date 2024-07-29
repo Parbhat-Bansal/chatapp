@@ -13,10 +13,10 @@ public class Server {
         Queue<String> queueB = new LinkedList<>();
 
         try (ServerSocket serverSocket = new ServerSocket(port)) {
-            System.out.println("Server started. Waiting for clients...");
-
+            System.out.println("Server started.....");
             while (true) {
                 try {
+                    System.out.println("Waiting for clients...");
                     Socket socket = serverSocket.accept();
                     sw = !sw ;
                     ForwardServer fs;
@@ -25,7 +25,8 @@ public class Server {
                     } else {
                         fs = new ForwardServer(socket, queueB,queueA);
                     }
-                    fs.start();  
+                    fs.start();
+                    System.out.println("Client attached");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -35,3 +36,4 @@ public class Server {
         }
     }
 }
+
